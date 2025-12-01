@@ -1,37 +1,40 @@
-import { IsString, Length, Max, min, Min, MinLength } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsEmail, IsString, Length, MinLength } from "class-validator";
 
 export class CreateUserDto {
-
+    @ApiProperty({description: "about username", default: "ali"})
     @IsString()
     @MinLength(3)
     username: string;
 
-    @IsString()
-    @Length(3,255)
+    @ApiProperty({default: "abdullayevotabek414@gmail.com"})
+    @IsEmail()
     email: string;
 
+    @ApiProperty({default: "otabekkk1"})
     @IsString()
-    @MinLength(6)
+    @Length(8, 50)
     password: string;
 }
 
 export class VerifyDto {
-    @IsString()
-    @MinLength(3)   
+    @ApiProperty({default: "abdullayevotabek414@gmail.com"})
+    @IsEmail()
     email: string;
 
+    @ApiProperty()
     @IsString()
-    @Max(999999)
-    @Min(10000)
-    otp: number;
+    @Length(6, 6)
+    otp: string;
 }
 
 export class LoginDto {
-    @IsString()
-    @MinLength(3)
+    @ApiProperty({default: "abdullayevotabek414@gmail.com"})
+    @IsEmail()
     email: string;
 
+    @ApiProperty({default: "otabekkk1"})
     @IsString()
-    @MinLength(6)
+    @Length(8, 50)
     password: string;
 }
